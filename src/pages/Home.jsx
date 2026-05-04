@@ -3,6 +3,17 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { FaLinkedinIn } from "react-icons/fa";
+import { 
+  FaWheelchair, 
+  FaMosque, 
+  FaParking, 
+  FaCreditCard, 
+  FaEnvelopeOpenText, 
+  FaBaby 
+} from "react-icons/fa";
+import { GrAtm  } from "react-icons/gr";
+
+import { BiSolidCarWash ,   } from "react-icons/bi";
 
 import Header from "../components/Header";
 import Hero from "../components/Hero";
@@ -142,6 +153,19 @@ export default function Home() {
   // Infinite loop loop-kaga list-ai double pannuvom
   const infiniteFood = [...foodImages, ...foodImages];
   const infiniteBrands = [...brands, ...brands, ...brands];
+
+
+  const amenities = [
+    { icon: <FaWheelchair />, name: "WHEEL CHAIR" },
+    { icon: <FaMosque />, name: "PRAYER ROOM" },
+    { icon: <FaParking />, name: "PARKING" },
+    { icon: <BiSolidCarWash  />, name: "CAR WASH" },
+    { icon: <GrAtm  />, name: "ATM" },
+    { icon: <FaCreditCard />, name: "GIFT CARDS" },
+    { icon: <FaEnvelopeOpenText />, name: "MAILBOX" },
+    { icon: <FaBaby />, name: "MOTHER CARE" },
+  ];
+
 
   return (
     <div className="w-full overflow-x-hidden bg-white">
@@ -481,7 +505,7 @@ export default function Home() {
       </section>
 
       {/* --- Amenities Banner --- */}
-      <div className="bg-white py-12">
+      {/* <div className="bg-white py-12">
       <section className="bg-[#FF6347] py-20 px-10 md:px-20 flex flex-col md:flex-row justify-between items-center text-white">
         <div className="max-w-3xl">
           <span className="bg-white text-[#FF6347] px-4 py-1 text-[10px] font-black uppercase tracking-widest rounded-sm mb-6 inline-block">
@@ -499,7 +523,59 @@ export default function Home() {
           View All
         </button>
       </section>
-      </div>
+      </div> */}
+
+<div className="bg-white py-12">
+      <section className="bg-[#FF6347] py-16 px-6 md:px-20 text-white rounded-lg shadow-xl">
+        
+        {/* Top Content: Title and View All Button */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
+          <div className="max-w-3xl">
+            <span className="bg-white text-[#FF6347] px-6 py-2 text-[12px] font-bold uppercase tracking-widest rounded-sm mb-6 inline-block shadow-md">
+              Amenities
+            </span>
+            <h2 className="text-4xl md:text-5xl font-serif font-medium leading-tight uppercase tracking-tight">
+              Elevate Your Experience At <br /> GA Mall
+            </h2>
+          </div>
+          
+          <button 
+            onClick={() => navigate("/amenities")}
+            className="mt-8 md:mt-0 border border-white px-8 py-2 text-[11px] font-bold uppercase tracking-widest hover:bg-white hover:text-[#FF6347] transition-all duration-300"
+          >
+            View All
+          </button>
+        </div>
+
+        {/* Bottom Content: Icons Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-8">
+          {amenities.map((item, index) => (
+            <motion.div 
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="flex flex-col items-center group cursor-pointer"
+            >
+              {/* Circular Icon Border */}
+              <div className="w-20 h-20 md:w-24 md:h-24 border-2 border-white rounded-full flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 bg-transparent group-hover:bg-white/10">
+                <span className="text-3xl md:text-4xl">
+                  {item.icon}
+                </span>
+              </div>
+              
+              {/* Amenity Name */}
+              <p className="text-[10px] md:text-[11px] font-bold text-center tracking-widest uppercase leading-tight">
+                {item.name}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+
+      </section>
+    </div>
+
       <div className="bg-white py-12">
 {/* --- founder Section --- */}
 <section className="py-24 bg-gradient-to-b from-black via-[#0a1118] to-[#1a252f] text-white overflow-visible">
