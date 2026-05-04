@@ -53,7 +53,7 @@ function Hero() {
       
       {/* Background Video */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
-        <video
+        {/* <video
           autoPlay
           loop
           muted
@@ -61,7 +61,13 @@ function Hero() {
           className="w-full h-full object-cover"
         >
           <source src="/hero-video.mp4" type="video/mp4" />
-        </video>
+        </video> */}
+
+        <img 
+  src="/hero-image.jpg" 
+  alt="Hero Banner" 
+  className="w-full h-full object-cover"
+/>
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
 

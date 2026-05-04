@@ -56,7 +56,7 @@ export default function Home() {
     {
       title: "Kids Zone",
       desc: "Get immersed in fun activities",
-      img: "/kids",
+      img: "/kids.jpg",
       link: "/kids-zone",
     },
     {
@@ -118,6 +118,31 @@ export default function Home() {
     },
   ];
   
+
+ const foodImages = [
+    "/pizza.jpg",
+    "/juice.jpg",
+    "/burger.jpg",
+    "/biryani.jpg",
+    "/icecream.jpg",
+    "/cake.jpg",
+    "/puri.jpg",
+    "/dosa.jpg",
+
+  ];
+
+  const brands = [
+    { name: "Good Food", img: "/logo/logo1.png" },
+    { name: "Brand Name", img: "/logo/logo2.png" },
+    { name: "Macoy's", img: "/logo/logo3.png" },
+    { name: "Blaze", img: "/logo/logo4.png" },
+    { name: "Fortalian", img: "/logo/logo5.png" },
+  ];
+
+  // Infinite loop loop-kaga list-ai double pannuvom
+  const infiniteFood = [...foodImages, ...foodImages];
+  const infiniteBrands = [...brands, ...brands, ...brands];
+
   return (
     <div className="w-full overflow-x-hidden bg-white">
       <Header />
@@ -185,6 +210,202 @@ export default function Home() {
           </div>
         </section>
       </div>
+
+     {/* --- Food Court Section --- */}
+<section className="relative w-full min-h-[600px] flex items-center overflow-hidden">
+  {/* Background Image with Overlay */}
+  <div className="absolute inset-0 z-0">
+    <img 
+      src="/food-court.jpg" 
+      className="w-full h-full object-cover"
+      alt="Food Court Background"
+    />
+    {/* Image-la irukura maari gradient overlay */}
+    {/* <div className="absolute inset-0 bg-gradient-to-r from-red-700/85 via-red-600/30 to-transparent" /> */}
+    {/* Pink to White Gradient Overlay */}
+    <div className="absolute inset-0 bg-gradient-to-r from-red-700/85 via-[#FF69B4]/40 to-white" />
+  </div>
+
+  <div className="relative z-10 max-w-7xl mx-auto px-6 py-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+    
+    {/* Left Side Content: Text and Stats */}
+    <div className="text-white">
+      <motion.h2 
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        className="text-4xl md:text-5xl font-serif font-bold mb-8 uppercase leading-tight tracking-tight"
+      >
+        EXPERIENCE THE FOOD <br /> COURT
+      </motion.h2>
+      
+      <motion.p 
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.2 }}
+        viewport={{ once: true }}
+        className="text-base md:text-lg text-gray-100 mb-16 max-w-lg leading-relaxed font-light"
+      >
+        Whether you're looking for a casual night out with friends or a romantic evening for two, this is the perfect spot! If you're in the mood for some good food with some fun, be sure to drop in!
+      </motion.p>
+
+      {/* Stats Section: Image-la irukura athe alignment */}
+      <div className="flex gap-12 md:gap-16">
+        {[
+          { label: "Brands", value: "60+" },
+          { label: "Veg Dishes", value: "1,000+" },
+          { label: "Non-Veg Dishes", value: "1,500+" }
+        ].map((stat, idx) => (
+          <motion.div 
+            key={idx}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 + (idx * 0.1) }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <h4 className="text-3xl md:text-4xl font-bold mb-1 tracking-tighter">{stat.value}</h4>
+            <p className="text-[12px] md:text-sm font-medium text-white/90 uppercase tracking-wider">{stat.label}</p>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+
+    {/* Right Side: Floating Image Cards with Borders */}
+    <div className="flex gap-4 md:gap-6 items-center justify-end h-full">
+      {/* First Card (Slightly smaller/centered) */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        className="w-1/2 rounded-sm overflow-hidden border-[10px] border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-20"
+      >
+        <img src="/food-court-1.jpg" className="w-full h-64 md:h-96 object-cover" />
+      </motion.div>
+      
+      {/* Second Card (Full height maari) */}
+      <motion.div 
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.3 }}
+        viewport={{ once: true }}
+        className="w-1/2 rounded-sm overflow-hidden border-[10px] border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+      >
+        <img src="/dine-exp.jpg" className="w-full h-80 md:h-[500px] object-cover" />
+      </motion.div>
+    </div>
+  </div>
+</section>
+
+ {/* --- Delicacies Section JavaScript --- */}
+<section className="py-20 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 mb-12">
+        <h2 className="text-center text-4xl font-serif font-medium mb-16 uppercase tracking-widest text-gray-900">
+          Our Delicacies
+        </h2>
+      </div>
+
+      {/* 1. Food Cards Infinite Slider (Right to Left - Step by Step flow) */}
+      <div className="flex w-full overflow-hidden group mb-20 relative">
+        <motion.div
+          className="flex gap-6"
+          animate={{ x: ["0%", "-100%"] }} // Onnu pinne onnu smooth-ah sliding aaga
+          transition={{
+            duration: 60, // Speed-ai inge control pannalam
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          style={{ display: "flex", whiteSpace: "nowrap" }}
+          whileHover={{ animationPlayState: "paused" }} // Hover panna stop aagum
+        >
+          {infiniteFood.map((img, idx) => (
+            <div
+              key={idx}
+              className="min-w-[350px] md:min-w-[400px] h-[250px] rounded-2xl overflow-hidden shadow-lg flex-shrink-0 mx-2"
+            >
+              <img
+                src={img}
+                alt="food"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                onError={(e) => { e.target.src = "https://via.placeholder.com/400x250?text=Food"; }}
+              />
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* 2. Infinite Logo Slider (Right to Left - Same as Food Slider) */}
+      <div className="border-t border-b border-gray-100 py-12 bg-gray-50/50">
+        <div className="flex w-full overflow-hidden relative">
+          <motion.div
+            className="flex gap-20 items-center"
+            animate={{ x: ["0%", "-100%"] }} // Food image logic-ye ingeyum
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            style={{ display: "flex", whiteSpace: "nowrap" }}
+            whileHover={{ animationPlayState: "paused" }} // Brand image hover panna stop aagum
+          >
+            {infiniteBrands.map((brand, idx) => (
+              <div key={idx} className="flex flex-col items-center justify-center min-w-[180px] mx-6">
+                <img
+                  src={brand.img}
+                  alt={brand.name}
+                  className="h-16 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer"
+                  onError={(e) => { e.target.src = "https://via.placeholder.com/150x80?text=Logo"; }}
+                />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+    </section>
+
+{/* --- Theater Section --- */}
+<section className="py-24 bg-white">
+  <div className="max-w-7xl mx-auto px-6">
+    <motion.div 
+      initial={{ opacity: 0, y: -20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      className="mb-16"
+    >
+      <h2 className="text-4xl md:text-5xl font-serif font-medium text-gray-900 leading-tight uppercase">
+        Theater Experience At <br /> GA Mall
+      </h2>
+    </motion.div>
+
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {[
+        { title: "Private Screen", img: "/theater-private.jpg" },
+        { title: "Open Theater", img: "/theater-open.jpg" },
+        { title: "Multiplex Screens", img: "/theater-multiplex.jpg" }
+      ].map((item, idx) => (
+        <motion.div 
+          key={idx}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: idx * 0.1 }}
+          className="group cursor-pointer"
+        >
+          <div className="relative h-[400px] rounded-[2rem] overflow-hidden shadow-xl mb-6">
+            <img 
+              src={item.img} 
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+              alt={item.title}
+            />
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors" />
+          </div>
+          <h3 className="text-xl font-bold uppercase tracking-widest text-gray-800 group-hover:text-red-600 transition-colors">
+            {item.title}
+          </h3>
+          <div className="w-12 h-1 bg-red-600 mt-2 transition-all duration-300 group-hover:w-24" />
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* --- Experience Section --- */}
       <section className="py-20 px-6 md:px-20 bg-gradient-to-r from-[#1a2e23] via-[#2d4a3e] to-[#1a2e23] text-white">
