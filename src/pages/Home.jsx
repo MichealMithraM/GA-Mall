@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
@@ -14,6 +14,8 @@ import {
 import { GrAtm  } from "react-icons/gr";
 
 import { BiSolidCarWash ,   } from "react-icons/bi";
+import { ChevronDown } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
 
 import Header from "../components/Header";
 import Hero from "../components/Hero";
@@ -166,6 +168,47 @@ export default function Home() {
     { icon: <FaBaby />, name: "MOTHER CARE" },
   ];
 
+
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const faqs = [
+    {
+      question: "What Is GA Mall And What Does It Offer?",
+      answer: "GA Mall is a premier shopping destination offering a wide range of international brands, a multi-cuisine food court, and world-class entertainment options for all age groups."
+    },
+    {
+      question: "Where Is GA Mall Located?",
+      answer: "GA Mall is conveniently located at NH45, Melavalam, Karunguzhi, Tamil Nadu 603303."
+    },
+    {
+      question: "What Facilities Are Available In GA Mall?",
+      answer: "We provide various facilities including free Wi-Fi, prayer rooms, wheelchair assistance, baby care rooms, and a large parking area."
+    },
+    {
+      question: "What Is The Contact Number Of GA Mall?",
+      answer: "You can reach us at our customer service desk or call us directly at [Insert Phone Number Here] for any inquiries."
+    },
+    {
+      question: "What Are The Timings Of GA Mall?",
+      answer: "The mall is open from 10:00 AM to 10:30 PM on weekdays and 10:00 AM to 10:00 PM on weekends."
+    },
+    {
+      question: "Does GA Mall Have A Food Court?",
+      answer: "Yes, we have a massive multi-cuisine food court featuring over 60+ brands and 2500+ dishes."
+    },
+    {
+      question: "Is GA Mall Suitable For Family Visits?",
+      answer: "Absolutely! GA Mall is designed as a family-friendly space with kids' zones, safe environments, and family dining options."
+    },
+    {
+      question: "What Entertainment Options Are Available In GA Mall?",
+      answer: "We offer private screens, an open theater, multiplexes, VR gaming zones, and a dedicated kids' play area."
+    }
+  ];
+
+  const toggleFAQ = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
   return (
     <div className="w-full overflow-x-hidden bg-white">
@@ -657,6 +700,67 @@ export default function Home() {
         </div>
       </section>
       </div>
+
+      <section className="py-24 bg-white">
+      <div className="max-w-4xl mx-auto px-6 text-center">
+        {/* Header Section */}
+        <p className="text-xs font-bold tracking-[0.3em] text-gray-500 mb-2 uppercase">
+          GA Mall
+        </p>
+        <h2 className="text-3xl md:text-5xl font-serif font-medium mb-16 uppercase tracking-tight">
+          Frequently Asked Questions (FAQ)
+        </h2>
+
+        {/* FAQ Container Card */}
+        <div className="bg-white rounded-[2rem] shadow-[0_10px_50px_rgba(0,0,0,0.08)] p-8 md:p-12 text-left border border-gray-100">
+          <div className="space-y-6">
+            {faqs.map((faq, index) => (
+              <div 
+                key={index} 
+                className={`border-b border-gray-100 pb-4 last:border-0 last:pb-0`}
+              >
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full flex justify-between items-center text-left py-2 group focus:outline-none"
+                >
+                  <span className="font-bold text-gray-900 text-sm md:text-base leading-snug">
+                    <span className="mr-2">{index + 1}.</span>
+                    {faq.question}
+                  </span>
+                  
+                  {/* Animated Arrow Icon */}
+                  <motion.div
+                    animate={{ rotate: openIndex === index ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex-shrink-0 ml-4 bg-gray-50 p-1 rounded-full group-hover:bg-gray-100 transition-colors"
+                  >
+                    <ChevronDown size={20} className="text-gray-500" />
+                  </motion.div>
+                </button>
+
+                {/* Animated Answer Section */}
+                <AnimatePresence>
+                  {openIndex === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <p className="text-sm text-gray-600 pt-4 pb-2 leading-relaxed pl-6">
+                        {faq.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
       {/* --- Mall Hours Section --- */}
       <div className="bg-white py-12">
       <section className="py-24 bg-[#f0f7ff]">
